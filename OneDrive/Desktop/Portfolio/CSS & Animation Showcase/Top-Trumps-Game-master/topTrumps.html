@@ -6,173 +6,144 @@
     <meta name="description" content="Top-Trumps game implementation" />
     <meta name="keywords" content="Top-Trumps, card game, JavaScript" />
     <meta name="author" content="Louis Orefice" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="topTrumps.css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <link rel="stylesheet" href="topTrumps.style.css" />
+    <link rel="stylesheet" href="topTrumps.general.css" />
+
     <link rel="icon" href="https://fav.farm/🔥" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Metrophobic&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Tenor+Sans&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Metrophobic&family=Poppins:wght@100..900&family=Roboto:wght@100..900&family=Tenor+Sans&display=swap"
       rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512–…"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
     <title>Top-Trumps</title>
   </head>
+
   <body>
     <header>
       <div class="title-nav-container">
         <h1>Top-Trumps</h1>
-        <nav>
+        <!-- <nav>
           <ul>
-            <li>
-              <button class="nav-button">
-                <a href="#game-modes">Game Modes</a>
-              </button>
-            </li>
-            <li>
-              <button class="nav-button"><a href="#rules">Rules</a></button>
-            </li>
-            <li>
-              <button class="nav-button"><a href="#about">About</a></button>
-            </li>
+            <li><a href="#game-modes" class="nav-button">Explore</a></li>
+            <li><a href="#rules" class="nav-button">Rules</a></li>
+            <li><a href="#about" class="nav-button">About</a></li>
           </ul>
         </nav>
+        <p class="heading-description">
+          A classic card game where players compete to win cards based on
+          various attributes.
+        </p> -->
       </div>
     </header>
+
     <main>
-      <div class="display-container">
-        <section class="game-mode">
-          <!-- Casing  -->
-          <div class="casing">
-            <div class="trapezoid-banner"></div>
-            <div class="rectangle-banner"></div>
-            <div class="circle-banner"></div>
-            <div class="casing-inner">
-              <div class="casing-frame"></div>
-              <div class="casing-content">
-                <div class="card-preview">
-                  <!-- Use background-image or img -->
+      <section id="game-modes" class="game-modes">
+        <div class="cards-container">
+          <!-- CARD TEMPLATE -->
+          <div class="pack junior-mode">
+            <div class="pack-inner">
+              <div class="casing-container">
+                <div class="casing">
+                  <div class="banner-assembly">
+                    <div class="trapezoid-banner casing-1"></div>
+                    <div class="rectangle-banner"></div>
+                    <div class="circle-banner"></div>
+                    <div class="left-side-banner casing-1"></div>
+                    <div class="right-side-banner casing-1"></div>
+
+                    <div class="casing-inner">
+                      <div class="casing-frame"></div>
+                      <div class="casing-content">
+                        <div class="card-preview casing-preview-1">
+                          <div class="glass-panel"></div>
+                        </div>
+                        <div class="label">Beginner Mode</div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="label">Top Trumps</div>
               </div>
             </div>
-            <div class="mode-info">
-              <p class="mode-description"></p>
-
-              <p class="audience">
-                <strong>Audience:</strong> Advanced players
-              </p>
-
-              <div class="features">
-                <p><strong>Description:</strong></p>
-                <ul>
-                  <li>
-                    Use powerful, rare cards with boosted stats or special
-                    abilities.
-                  </li>
-                  <li>
-                    Cards may include special traits such as:
-                    <ul>
-                      <li>"Double points on win"</li>
-                      <li>"Steal a card from opponents deck"</li>
-                      <li>"Immune to Magic-based comparisons"</li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-            </div>
+            <i class="fa-duotone fa-solid fa-children icon"></i>
           </div>
-          <!-- Close .casing -->
-        </section>
 
-        <section class="game-mode">
-          <div class="casing">
-            <div class="trapezoid-banner"></div>
-            <div class="rectangle-banner"></div>
-            <div class="circle-banner"></div>
-            <div class="casing-inner">
-              <div class="casing-frame"></div>
-              <div class="casing-content">
-                <div class="card-preview">
-                  <!-- Use background-image or img -->
+          <!-- You can reuse the same markup and just change class names and labels below -->
+
+          <div class="pack classic-mode">
+            <div class="pack-inner">
+              <div class="casing-container">
+                <div class="casing">
+                  <div class="banner-assembly">
+                    <div class="trapezoid-banner casing-2"></div>
+                    <div class="rectangle-banner"></div>
+                    <div class="circle-banner"></div>
+                    <div class="left-side-banner casing-2"></div>
+                    <div class="right-side-banner casing-2"></div>
+
+                    <div class="casing-inner">
+                      <div class="casing-frame"></div>
+                      <div class="casing-content casing-2">
+                        <div class="card-preview casing-preview-2">
+                          <div class="glass-panel"></div>
+                        </div>
+                        <div class="label">Classic Mode</div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="label">Top Trumps</div>
               </div>
             </div>
-            <div class="mode-info">
-              <p class="mode-description"></p>
-
-              <p class="audience">
-                <strong>Audience:</strong> Advanced players
-              </p>
-
-              <div class="features">
-                <p><strong>Description:</strong></p>
-                <ul>
-                  <li>
-                    Use powerful, rare cards with boosted stats or special
-                    abilities.
-                  </li>
-                  <li>
-                    Cards may include special traits such as:
-                    <ul>
-                      <li>"Double points on win"</li>
-                      <li>"Steal a card from opponents deck"</li>
-                      <li>"Immune to Magic-based comparisons"</li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-            </div>
+            <i class="fa-solid fa-user icon"></i>
           </div>
-          <!-- Close .casing -->
-        </section>
+          <div class="pack expert-mode">
+            <div class="pack-inner">
+              <div class="casing-container">
+                <div class="casing">
+                  <div class="banner-assembly">
+                    <div class="trapezoid-banner casing-3"></div>
+                    <div class="rectangle-banner"></div>
+                    <div class="circle-banner"></div>
+                    <div class="left-side-banner casing-3"></div>
+                    <div class="right-side-banner casing-3"></div>
 
-        <section class="game-mode">
-          <div class="casing">
-            <div class="banner-wrapper"></div>
-            <div class="trapezoid-banner"></div>
-            <div class="rectangle-banner"></div>
-            <div class="circle-banner"></div>
-            <div class="casing-inner">
-              <div class="casing-frame"></div>
-              <div class="casing-content">
-                <div class="card-preview">
-                  <!-- Use background-image or img -->
+                    <div class="casing-inner">
+                      <div class="casing-frame card-preview-1"></div>
+                      <div class="casing-content casing-3">
+                        <div class="card-preview casing-preview-3">
+                          <div class="glass-panel"></div>
+                        </div>
+                        <div class="label">Expert Mode</div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="label">Top Trumps</div>
               </div>
             </div>
-            <div class="mode-info">
-              <p class="mode-description"></p>
-
-              <p class="audience">
-                <strong>Audience:</strong> Advanced players
-              </p>
-
-              <div class="features">
-                <p><strong>Description:</strong></p>
-                <ul>
-                  <li>
-                    Use powerful, rare cards with boosted stats or special
-                    abilities.
-                  </li>
-                  <li>
-                    Cards may include special traits such as:
-                    <ul>
-                      <li>"Double points on win"</li>
-                      <li>"Steal a card from opponents deck"</li>
-                      <li>"Immune to Magic-based comparisons"</li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-            </div>
+            <i class="icon-plain fa-solid fa-hat-wizard"></i>
           </div>
-          <!-- Close .casing -->
-        </section>
-      </div>
-      <!-- Close .display-container -->
+          <!-- End card -->
+        </div>
+      </section>
     </main>
+    <footer>
+      <p>
+        &copy; 2023 Louis Orefice. All rights reserved.
+        <a href="https://github.com/LouisOrefice/Top-Trumps-Game"
+          >GitHub Repository</a
+        >
+      </p>
+    </footer>
+
     <script src="topTrumps.js"></script>
   </body>
 </html>
