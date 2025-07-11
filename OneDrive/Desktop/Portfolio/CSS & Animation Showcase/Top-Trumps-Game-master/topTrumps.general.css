@@ -46,6 +46,9 @@ SPACING SYSTEM (px):
   padding: 0;
   box-sizing: border-box;
 }
+a:visited {
+  color: inherit; /* or use the same color as your unvisited links */
+}
 
 html {
   font-size: 62.5%;
@@ -94,11 +97,23 @@ h1 {
   background-color: #f8c600;
 }
 
+nav {
+  display: flex;
+  flex-direction: row;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  padding: 0;
+}
 /* FOOTER */
 
 footer {
   background-color: #f8c600;
   padding: 1rem;
+  font-size: 1.2rem;
   text-align: center;
   font-family: "Impact", sans-serif;
   position: relative;

@@ -1,0 +1,745 @@
+/*
+
+--- 01 TYPOGRAPHY 
+
+- FONT SIZE SYSTEM (px)
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+
+- Font Weights: 
+Default: 400
+Medium: 500
+Semi-bold: 600
+Bold: 700 
+
+- Line heights
+Default: 1 
+Small: 1.05
+Medium: 1.2
+Large: 1.8
+Paragraph Default: 1.6
+
+- Letter spacing 
+
+
+--- 02 COLORS 
+Primary: #f8c600, #62bcf8
+
+Sonic: #0049a5
+Car:#3c3c46 , #a8b0c3 , #b82516
+mythical: #9f75b4 #eeb8ca #9779c6
+
+Shades: #0049a5 
+#032f66fd (Sonic Card Border)
+#e4e0d0, #f8c600 - (Top Trumps Rating)
+
+--- 05 SHADOWS
+box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.075);
+
+--- 06 BORDER RADIUS 
+Default: 
+Medium: 
+
+SPACING SYSTEM (px):
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.6rem;
+  line-height: 1.6;
+  color: black;
+  background-color: #ffffff; /* same as header/footer bg */
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Hide horizontal overflow */
+  width: 100vw; /* Make sure width is exactly viewport */
+}
+
+/* HEADER */
+
+.title-nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  padding: 0.2rem;
+  margin-left: auto;
+}
+
+a:visited {
+  color: inherit; /* or use the same color as your unvisited links */
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: black;
+  font-family: Impact;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: underline #000000;
+  letter-spacing: 0.1rem;
+  text-underline-offset: 0.8rem;
+  border: #f8c600 solid 0.2rem;
+  border-radius: 50%;
+  background-color: #f8c600;
+  display: flex;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  margin-right: 5rem;
+}
+
+nav ul {
+  list-style: none;
+  font-size: 1.2rem;
+  display: flex;
+  gap: 2rem;
+  padding: 0;
+  text-decoration: none;
+}
+
+/* Game Background */
+.game-background {
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* Game Board */
+.game-board {
+  width: 75%;
+  height: 100%;
+
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+}
+.scoreboard {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+/* Health Bar */
+.health-bar {
+  width: 35%;
+  height: 1.5rem;
+  border-radius: 3rem;
+  display: flex;
+  align-items: center;
+  /* background-color: #5656565c; */
+}
+
+.ring-player1 {
+  opacity: 1;
+  background-image: url("imgs/sonicGame/ring.png");
+  background-size: cover;
+  width: 3.5rem;
+  height: 3.5rem;
+  background-color: #033879;
+}
+.ring-player1:nth-child(1) {
+  border-radius: 1rem 0 0 1rem;
+}
+
+.ring-cpu {
+  opacity: 1;
+  background-image: url("imgs/sonicGame/ring.png");
+  background-size: cover;
+  width: 3.5rem;
+  height: 3.5rem;
+  background-color: #f8c60053;
+}
+
+.ring-cpu:nth-child(14) {
+  border-radius: 0 1rem 1rem 0;
+}
+
+.player1-increase {
+  background-color: #033879;
+}
+.cpu-increase {
+  background-color: #f8c60053;
+}
+
+.scoreboard-player-1,
+.scoreboard-cpu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.player-name {
+  font-size: 1.8rem;
+  color: #000000;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-family: Sage;
+  padding: 0 1.5rem;
+  border-radius: 1rem;
+}
+
+.player-score {
+  font-size: 1.8rem;
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  background-color: #0049a5;
+  border-radius: 1rem;
+  padding: 0.25rem 1.5rem;
+  align-items: center;
+  display: flex;
+}
+
+.scoreboard-cpu span.player-score {
+  background-color: #f8c60053;
+  color: #000000;
+  border: 0.1rem solid #000000;
+}
+
+/* === Layout Container === */
+.message-board-buttons-container {
+  position: absolute;
+  width: 100%;
+  top: 40%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+/* === Result Messages === */
+.result-message {
+  width: 15rem;
+  font-size: 2rem;
+  font-family: NiseSegaSonic;
+  text-align: right;
+}
+
+#player-1-result-output {
+  text-align: left;
+  position: relative;
+  left: -5rem;
+}
+
+.output-player-number {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  margin-left: 0.75rem;
+}
+
+#cpu-result-output {
+  text-align: center;
+  position: relative;
+  left: 6rem;
+}
+
+/* === Buttons Container === */
+.message-board-buttons {
+  position: relative;
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* === Shared Button Styles === */
+.board-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  font-family: Sage;
+  font-size: 2.4rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #000;
+
+  border-radius: 1rem;
+  box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 1);
+  background-color: #f8c600;
+  cursor: pointer;
+}
+
+/* === Specific Button Overrides === */
+#board-button-vs {
+  background-color: #f86c00;
+  height: fit-content;
+  padding: 0.5rem 1rem;
+}
+
+#board-button-start {
+  z-index: 100;
+  animation: pulse 2s infinite;
+  height: fit-content;
+  padding: 0.5rem 1rem;
+}
+
+#board-button-countdown {
+  background-color: #f86c00;
+  animation: pulse 3s forwards;
+  animation-iteration-count: 3;
+  opacity: 0;
+  padding: 0.5rem 1rem;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* CARD COVERS */
+
+/* Player 1 Card Cover */
+.card-cover-1 {
+  position: absolute;
+  top: -1rem;
+  left: -1rem;
+  width: 108%;
+  height: 105%;
+  background: url(imgs/sonic/sonic.jfif) no-repeat center center;
+  background-size: cover;
+  border-radius: 1.5rem;
+  z-index: 10;
+  animation: liftCard 2s infinite;
+}
+
+/* Player 2 Card Cover */
+.card-cover-2 {
+  position: absolute;
+  top: -1rem;
+  left: -1rem;
+  width: 108%;
+  height: 108%;
+  background: url(imgs/sonic/sonic.jfif) no-repeat center center;
+  background-size: cover;
+  border-radius: 1.5rem;
+  z-index: 11;
+
+  /* Start fully visible */
+  opacity: 1;
+  transform: translateY(0);
+
+  /* Smooth transition */
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+@keyframes liftCard {
+  0% {
+    transform: translateY(0) scaleY(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-5%) scaleY(0.9);
+    opacity: 0.95;
+  }
+  100% {
+    transform: translateY(0) scaleY(1);
+    opacity: 1;
+  }
+}
+.appear {
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: all 1s ease;
+}
+
+@keyframes rocketOut {
+  0% {
+    transform: translateY(0) rotate(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-150%) rotate(-15deg);
+    opacity: 0;
+  }
+}
+
+.rocket-out {
+  animation: rocketOut 0.7s ease forwards;
+}
+
+/* Player 1 Card */
+.player-1-card {
+  position: absolute;
+  top: 10%;
+  left: 12.5%;
+  z-index: 5;
+
+  width: 25rem;
+  height: 40rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #ffffff;
+  border: 1rem solid #0049a5;
+  border-radius: 1.5rem;
+  box-sizing: border-box;
+  filter: drop-shadow(0 1.2rem 0.4rem rgba(0, 0, 0, 1));
+}
+
+.card-body-border {
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  border: 0.25rem solid #f8c600;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+}
+
+.card-body {
+  width: 100%;
+  height: 100%;
+  border: 0.25rem solid #000000;
+  border-radius: 0.1rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: url(imgs/sonicGame/werehog.jpg) no-repeat center center;
+  background-size: cover;
+}
+
+.card-name {
+  background-color: #000000;
+  height: auto;
+  width: 100%;
+  font-size: 2.6rem;
+  background: linear-gradient(145deg, #f7e8af, #f8c600);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: "NiseSegaSonic", Impact, Haettenschweiler, "Arial Narrow Bold",
+    sans-serif;
+  -webkit-text-stroke: 0.1px black;
+  margin-left: 0.5rem;
+  z-index: 10;
+}
+
+/* Card Info Bottom Container */
+.card-info-bottom-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  height: auto;
+
+  /* background: linear-gradient(
+    to top,
+    rgba(4, 97, 211, 0.352),
+    rgba(255, 255, 255, 0.023)
+  ); */
+}
+
+/* STATS + ANIMATIONS */
+.stats-container {
+  display: flex;
+  gap: 0.2rem;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 75%;
+}
+
+.card-stats {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+  color: #ffffff;
+  font-family: "NiseSegaSonic";
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+  gap: 0.08rem;
+  margin-bottom: 0.5rem;
+}
+
+.stat-item-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-bottom: #000000 solid 0.2rem;
+  border-top: #000000 solid 0.2rem;
+  border-left: #000000 solid 0.2rem;
+  background-color: #ffffff;
+  -webkit-text-stroke: 1px black;
+  border-radius: 2rem 0 0 2rem;
+  cursor: pointer;
+  background: linear-gradient(90deg, rgb(101, 141, 190), #033879);
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s ease;
+}
+
+.stat-item-container:hover:not(.selected):not(.disabled) {
+  background: linear-gradient(90deg, #e4e0d0, #f8c600);
+  border-radius: 2rem 0 0 2rem;
+  cursor: pointer;
+}
+
+/* Selected effect (stays even without hover) */
+.stat-item-container.selected {
+  background: linear-gradient(90deg, #e4e0d0, #f8c600);
+  border-radius: 2rem 0 0 2rem;
+}
+
+.stat-item-container.disabled {
+  pointer-events: none; /* disables hover/click */
+  opacity: 0.6;
+}
+
+.stat-name {
+  text-align: center;
+  width: 100%;
+  text-transform: uppercase;
+  display: flex;
+  margin-top: 0.3rem;
+  padding-left: 1rem;
+}
+.stat-value {
+  width: 8rem;
+  text-align: center;
+  font-size: 1.8rem;
+  padding-right: 1rem;
+}
+.highlighted {
+  background: linear-gradient(90deg, #e4e0d0, #f8c600);
+  border-radius: 2rem 0 0 2rem;
+}
+
+.top-trump-rating-attribute {
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s ease;
+  margin-top: 1rem;
+  background: linear-gradient(90deg, #e4e0d0, #f8c600);
+}
+
+.top-trumps-rating-value {
+  background: none;
+  font-size: 3rem;
+}
+
+/* WINNER/LOSER/TIE ANIMATIONS */
+
+/* SPEED */
+
+@keyframes speedAnim {
+  0%,
+  100% {
+  }
+  50% {
+    filter: blur(1px);
+  }
+}
+.stat-speed:hover {
+  animation: speedAnim 0.3s ease-in-out 5;
+}
+
+/* STRENGTH */
+@keyframes strengthAnim {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+.stat-strength:hover {
+  animation: strengthAnim 0.3s ease-in-out 3;
+}
+
+/* DANGER */
+@keyframes dangerAnim {
+  0%,
+  100% {
+    box-shadow: 0 0 10px 2px rgba(255, 0, 0, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 20px 5px rgba(255, 0, 0, 1);
+  }
+}
+.stat-danger:hover {
+  animation: dangerAnim 3s ease-in-out 0s;
+}
+
+/* DEBUT */
+@keyframes debutAnim {
+  0% {
+    opacity: 1;
+    filter: brightness(150%) blur(4px);
+    transform: scale(1);
+  }
+  60% {
+    opacity: 1;
+    filter: brightness(120%) blur(0px);
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    filter: brightness(100%);
+    transform: scale(1);
+  }
+}
+.stat-debut:hover {
+  animation: debutAnim 1s ease forwards;
+}
+
+/* TOP TRUMPS RATING */
+
+.top-trump-rating-attribute::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
+
+  /* HIDE */
+  opacity: 0;
+  visibility: hidden;
+}
+
+.top-trump-rating-attribute:hover::before {
+  animation: shine 1.5s infinite;
+  opacity: 1;
+  visibility: visible;
+}
+
+@keyframes shine {
+  0% {
+    left: -60%;
+  }
+  100% {
+    left: 120%;
+  }
+}
+
+.top-trumps-rating-name {
+  font-size: 0.8rem;
+}
+
+@keyframes glowHighlight {
+  0% {
+    filter: drop-shadow(0 0 4px #f8c600) brightness(1);
+  }
+  50% {
+    filter: drop-shadow(0 0 10px #f8c600) brightness(1.5);
+  }
+  100% {
+    filter: drop-shadow(0 0 4px #f8c600) brightness(1);
+  }
+}
+
+.top-trump-rating-attribute.selected {
+  animation: glowHighlight 1s ease forwards;
+}
+
+/* *************************************************************************************CPU Card ************************************************************************************* */
+.player-2-card {
+  position: absolute;
+  top: 10%;
+  right: 12.5%;
+  z-index: 5;
+
+  width: 25rem;
+  height: 40rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #ffffff;
+  border: 1rem solid #0049a5;
+  border-radius: 1.5rem;
+  box-sizing: border-box;
+  filter: drop-shadow(0 1.2rem 0.4rem rgba(0, 0, 0, 1));
+}
+
+.player-2-card .card-body {
+  background: url(imgs/sonicGame/knuckles.webp) no-repeat;
+  background-size: cover;
+}
+
+.player-2-card .stat-item-container {
+  cursor: default;
+}
+
+.stat-item-container.win {
+  background: #4caf50;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.stat-item-container.lose {
+  background: #ff1100; /* red */
+  color: white;
+  transition: background 0.3s ease;
+}
+
+.stat-item-container.tie {
+  background: #f1b158; /* yellow */
+  transition: background 0.3s ease;
+}
+
+footer {
+  background: #f8c600;
+  padding: 1rem;
+  font-size: 1.2rem;
+  text-align: center;
+  font-family: "Impact", sans-serif;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  border-top: 0.2rem solid #000000;
+}

@@ -8,7 +8,7 @@
     <meta name="author" content="Louis Orefice" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <link rel="stylesheet" href="topTrumps.style.css" />
+    <link rel="stylesheet" href="topTrumps.home.css" />
     <link rel="stylesheet" href="topTrumps.general.css" />
 
     <link rel="icon" href="https://fav.farm/🔥" />
@@ -31,10 +31,11 @@
   <body>
     <header>
       <div class="title-nav-container">
-        <h1>Top-Trumps</h1>
-        <!-- <nav>
+        <h1><a href="mainmenu.html" class="title">Top-Trumps</a></h1>
+
+        <nav>
           <ul>
-            <li><a href="#game-modes" class="nav-button">Explore</a></li>
+            <li><a href="mainmenu.html" class="nav-button">Home</a></li>
             <li><a href="#rules" class="nav-button">Rules</a></li>
             <li><a href="#about" class="nav-button">About</a></li>
           </ul>
@@ -42,7 +43,7 @@
         <p class="heading-description">
           A classic card game where players compete to win cards based on
           various attributes.
-        </p> -->
+        </p>
       </div>
     </header>
 
@@ -50,11 +51,70 @@
       <section id="game-modes" class="game-modes">
         <div class="cards-container">
           <!-- CARD TEMPLATE -->
-          <div class="pack junior-mode">
+          <div class="pack junior-mode" data-link="sonic.html">
             <div class="pack-inner">
               <div class="casing-container">
                 <div class="casing">
                   <div class="banner-assembly">
+                    <!-- <svg
+                      class="children-icon"
+                      xmlns="http://www.w3.org/2000/svg"
+                      x="0px"
+                      y="0px"
+                      width="100"
+                      height="100"
+                      viewBox="0 0 120 120"
+                    >
+                      <path
+                        d="M120,33.244c0,0-2.726-2.244-10-2.244c-4.539,0-8.566,1.272-11.446,2.532 C87.028,23.131,71.153,16,54,16c-18,0-29,7-29,7s13,7,20,19c0,0-25.323-2-45,19c0,0,25,2,33.436,13.5C33.436,74.5,15,78,10,101 c0,0,8-4,30-4c5.52,0,10.22,0.63,14.324,1.573C58.634,104.559,68.315,109,78,109c11.087,0,22.168-3.641,25.19-11.535 C111.724,89.518,117,78.213,117,70c0-5.72-1.406-11.536-3.958-17.13C119.993,45.577,120,33.244,120,33.244z"
+                        opacity=".35"
+                      ></path>
+                      <path
+                        fill="#0037ff"
+                        d="M94,32c0,0,7-5,16-5c7.274,0,10,2.244,10,2.244S120,46,109,52L94,32z"
+                      ></path>
+                      <path
+                        fill="#0075ff"
+                        d="M81,103c-10,0-19-10-41-10s-30,4-30,4c5-23,23.436-26.5,23.436-26.5C25,59,0,57,0,57 c19.678-21,45-19,45-19c-7-12-20-19-20-19s11-7,29-7c34,0,63,28,63,54C117,80,101.683,103,81,103z"
+                      ></path>
+                      <path
+                        fill="#fff"
+                        d="M72,47c-8,0-14,8-14,19s6.761,23,33.761,23c22,0,22.239-29,18.239-29s-9,17-17,17S88,47,72,47z"
+                      ></path>
+                      <path
+                        fill="#0037ff"
+                        d="M78.69,71.311c-0.905,5.227-3.515,9.102-5.829,8.654c-2.314-0.448-3.456-5.049-2.551-10.276 s3.515-9.102,5.829-8.654C78.453,61.483,79.595,66.084,78.69,71.311z"
+                      ></path>
+                      <path
+                        fill="#0037ff"
+                        d="M96.002,76.19c0.041,3.117,0.877,5.481,2.223,5.778c1.8,0.398,3.829-3.046,4.533-7.692 c0.308-2.031,0.311-3.955,0.068-5.511C100.841,71.808,98.597,74.8,96.002,76.19z"
+                      ></path>
+                      <path
+                        fill="#ffc1bf"
+                        d="M61.019,77.999C67,77.999,70,86,80,86s24-3.586,24,3c0,11-13,16-26,16s-26-8-26-17 S58,77.999,61.019,77.999z"
+                      ></path>
+                      <path
+                        d="M110.69,94.662c-3.285,2.625-7.599,3.113-9.637,1.091c-2.038-2.022-1.027-5.79,2.257-8.414 c3.285-2.625,7.599-3.113,9.637-1.091C114.985,88.27,113.975,92.037,110.69,94.662z"
+                        opacity=".35"
+                      ></path>
+                      <path
+                        fill="#0037ff"
+                        d="M110.69,91.662c-3.285,2.625-7.599,3.113-9.637,1.091c-2.038-2.022-1.027-5.79,2.257-8.414 c3.285-2.625,7.599-3.113,9.637-1.091C114.985,85.27,113.975,89.037,110.69,91.662z"
+                      ></path>
+                      <path
+                        fill="#ff6c59"
+                        d="M62.942,86.007C62.342,87.21,62,88.564,62,90c0,4.971,4.029,9,9,9c3.525,0,6.528-2.052,8.005-5.004 C79.005,93.996,68.033,94.972,62.942,86.007z"
+                      ></path>
+                      <path
+                        d="M54.007,44.998c-0.006,0.002,4.19-4.03,12.185-6.05C74.314,36.896,81,39,80.914,39.019L81,39 c-6-14-19-17-19-17c-9.008,8.787-8,23-8,23L54.007,44.998z"
+                        opacity=".35"
+                      ></path>
+                      <path
+                        fill="#ffc1bf"
+                        d="M54.007,41.998c-0.006,0.002,4.19-4.03,12.185-6.05C74.314,33.896,81,36,80.914,36.019L81,36 c-6-14-19-17-19-17c-9.008,8.787-8,23-8,23L54.007,41.998z"
+                      ></path>
+                    </svg> -->
+
                     <div class="trapezoid-banner casing-1"></div>
                     <div class="rectangle-banner"></div>
                     <div class="circle-banner"></div>
@@ -67,14 +127,13 @@
                         <div class="card-preview casing-preview-1">
                           <div class="glass-panel"></div>
                         </div>
-                        <div class="label">Beginner Mode</div>
+                        <div class="label">SONIC</div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <i class="fa-duotone fa-solid fa-children icon"></i>
           </div>
 
           <!-- You can reuse the same markup and just change class names and labels below -->
@@ -96,14 +155,14 @@
                         <div class="card-preview casing-preview-2">
                           <div class="glass-panel"></div>
                         </div>
-                        <div class="label">Classic Mode</div>
+                        <div class="label">SUPERCARS</div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <i class="fa-solid fa-user icon"></i>
+            <!-- <i class="fa-solid fa-car car-icon"></i> -->
           </div>
           <div class="pack expert-mode">
             <div class="pack-inner">
@@ -122,14 +181,14 @@
                         <div class="card-preview casing-preview-3">
                           <div class="glass-panel"></div>
                         </div>
-                        <div class="label">Expert Mode</div>
+                        <div class="label">MYTHICAL</div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <i class="icon-plain fa-solid fa-hat-wizard"></i>
+            <!-- <i class="fa-solid fa-dragon icon dragon-icon"></i> -->
           </div>
           <!-- End card -->
         </div>
@@ -144,6 +203,6 @@
       </p>
     </footer>
 
-    <script src="topTrumps.js"></script>
+    <script src="topTrumps-home.js"></script>
   </body>
 </html>

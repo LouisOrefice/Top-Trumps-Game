@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Top-Trumps game implementation" />
+    <meta name="keywords" content="Top-Trumps, card game, JavaScript" />
+    <meta name="author" content="Louis Orefice" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <link rel="stylesheet" href="topTrumps.sonic.css" />
+
+    <link rel="icon" href="https://fav.farm/🔥" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Metrophobic&family=Poppins:wght@100..900&family=Roboto:wght@100..900&family=Tenor+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512–…"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Top-Trumps</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="title-nav-container">
+        <h1><a href="mainmenu.html" class="title">Top-Trumps</a></h1>
+
+        <nav>
+          <ul>
+            <li><a href="mainmenu.html" class="nav-button">Home</a></li>
+            <li><a href="#rules" class="nav-button">Rules</a></li>
+            <li><a href="#about" class="nav-button">About</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <div class="game-background">
+          <div class="scoreboard">
+            <div class="scoreboard-player-1">
+              <span class="player-name">Player 1</span>
+              <span class="player-score">7</span>
+            </div>
+            <div class="health-bar" aria-label="Health bar">
+              <div class="ring-icon ring-player1"></div>
+              <div class="ring-icon ring-player1"></div>
+              <div class="ring-icon ring-player1"></div>
+              <div class="ring-icon ring-player1"></div>
+              <div class="ring-icon ring-player1"></div>
+              <div class="ring-icon ring-player1"></div>
+              <div class="ring-icon ring-player1"></div>
+              <div class="ring-icon ring-cpu"></div>
+              <div class="ring-icon ring-cpu"></div>
+              <div class="ring-icon ring-cpu"></div>
+              <div class="ring-icon ring-cpu"></div>
+              <div class="ring-icon ring-cpu"></div>
+              <div class="ring-icon ring-cpu"></div>
+              <div class="ring-icon ring-cpu"></div>
+            </div>
+            <div class="scoreboard-cpu">
+              <span class="player-score">7</span>
+              <span class="player-name">CPU</span>
+            </div>
+          </div>
+
+          <section class="game-board" aria-label="Game board">
+            <div class="message-board-buttons-container">
+              <div
+                class="result-message"
+                id="player-1-result-output"
+                aria-live="polite"
+              >
+                <br /><span class="output-player-number"></span>
+              </div>
+              <div class="message-board-buttons">
+                <span
+                  id="board-button-vs"
+                  class="board-button"
+                  aria-hidden="true"
+                  >VS</span
+                >
+                <span
+                  id="board-button-start"
+                  class="board-button"
+                  aria-hidden="true"
+                  >Start</span
+                >
+                <span
+                  id="board-button-countdown"
+                  class="board-button"
+                  aria-hidden="true"
+                  >3</span
+                >
+              </div>
+              <div
+                class="result-message"
+                id="cpu-result-output"
+                aria-live="polite"
+              ></div>
+            </div>
+            <article class="player-1-card" aria-label="Player 1 card">
+              <div class="card-cover-1"></div>
+              <div class="card-body-border">
+                <div class="card-body">
+                  <div class="card-name-container">
+                    <h3 class="card-name">SONIC</h3>
+                  </div>
+                  <div class="card-info-bottom-container">
+                    <!-- <div class="card-description-container">
+                      <p class="card-description">
+                        Sonic is the fastest hedgehog alive. He spins to defeat
+                        enemies. Always ready for adventure. Rings keep him
+                        powered up!
+                      </p>
+                    </div> -->
+
+                    <div class="stats-container">
+                      <dl class="card-stats">
+                        <div
+                          class="stat-item-container stat-speed"
+                          data-stat="speed"
+                        >
+                          <dt class="stat-name speed-name">Speed</dt>
+                          <dd class="stat-value speed-value">180</dd>
+                        </div>
+                        <div
+                          class="stat-item-container stat-strength"
+                          data-stat="strength"
+                        >
+                          <dt class="stat-name strength-name">MUSCLE</dt>
+                          <dd class="stat-value strength-value">30</dd>
+                        </div>
+                        <div
+                          class="stat-item-container stat-danger"
+                          data-stat="danger"
+                        >
+                          <dt class="stat-name danger-name">Danger</dt>
+                          <dd class="stat-value danger-value">5</dd>
+                        </div>
+                        <div
+                          class="stat-item-container stat-debut"
+                          data-stat="debut"
+                        >
+                          <dt class="stat-name debut-name">Debut</dt>
+                          <dd class="stat-value debut-value">1991</dd>
+                        </div>
+                        <div
+                          class="stat-item-container top-trump-rating-attribute"
+                          data-stat="topTrumpRating"
+                        >
+                          <dt
+                            class="stat-name top-trumps-rating-name stat-name-5"
+                          >
+                            Top Trumps Rating
+                          </dt>
+                          <dd
+                            class="stat-value top-trumps-rating-value stat-value-5"
+                          >
+                            8
+                          </dd>
+                        </div>
+                      </dl>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="player-2-card" aria-label="Player 2 card">
+              <div class="card-cover-2"></div>
+              <div class="card-body-border">
+                <div class="card-body">
+                  <h3 class="card-name">KNUCKLES</h3>
+
+                  <div class="card-info-bottom-container">
+                    <!-- <div class="card-description-container">
+                      <p class="card-description">
+                        Sonic is the fastest hedgehog alive. He spins to defeat
+                        enemies. Always ready for adventure. Rings keep him
+                        powered up!
+                      </p>
+                    </div> -->
+
+                    <div class="stats-container">
+                      <dl class="card-stats">
+                        <div
+                          class="stat-item-container stat-speed"
+                          data-stat="speed"
+                        >
+                          <dt class="stat-name speed-name">Speed</dt>
+                          <dd class="stat-value speed-value">140</dd>
+                        </div>
+                        <div
+                          class="stat-item-container stat-strength"
+                          data-stat="strength"
+                        >
+                          <dt class="stat-name strength-name">Muscle</dt>
+                          <dd class="stat-value strength-value">43</dd>
+                        </div>
+                        <div
+                          class="stat-item-container stat-danger"
+                          data-stat="danger"
+                        >
+                          <dt class="stat-name danger-name">Danger</dt>
+                          <dd
+                            class="stat-value danger-value"
+                            data-stat="danger"
+                          >
+                            10
+                          </dd>
+                        </div>
+                        <div
+                          class="stat-item-container stat-debut"
+                          data-stat="debut"
+                        >
+                          <dt class="stat-name debut-name">Debut</dt>
+                          <dd class="stat-value debut-value">1994</dd>
+                        </div>
+                        <div
+                          class="stat-item-container top-trump-rating-attribute"
+                          data-stat="topTrumpRating"
+                        >
+                          <dt
+                            class="stat-name top-trumps-rating-name stat-name-5"
+                          >
+                            Top Trumps Rating
+                          </dt>
+                          <dd
+                            class="stat-value top-trumps-rating-value stat-value-5"
+                          >
+                            8
+                          </dd>
+                        </div>
+                      </dl>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- PLAYER 2 CARD -->
+
+            <div class="vs-icon" aria-hidden="true"></div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        &copy; 2023 Louis Orefice. All rights reserved.
+        <a href="https://github.com/LouisOrefice/Top-Trumps-Game"
+          >GitHub Repository</a
+        >
+      </p>
+    </footer>
+
+    <script src="topTrumps-sonic-gameboard.js"></script>
+  </body>
+</html>
