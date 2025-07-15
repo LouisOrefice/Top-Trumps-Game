@@ -261,7 +261,8 @@ nav ul {
 /* === Buttons Container === */
 .message-board-buttons {
   position: relative;
-  width: 10%;
+  width: 8rem;
+  height: 3.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -290,22 +291,23 @@ nav ul {
 
   border-radius: 1rem;
   box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 1);
-  background-color: #f8c600;
+
   cursor: pointer;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem 1rem;
 }
 
 /* === Specific Button Overrides === */
 #board-button-vs {
   background-color: #f86c00;
-  height: fit-content;
-  padding: 0.5rem 1rem;
 }
 
 #board-button-start {
   z-index: 100;
   animation: pulse 2s infinite;
-  height: fit-content;
-  padding: 0.5rem 1rem;
+  background-color: #f8c600;
 }
 
 #board-button-countdown {
@@ -313,7 +315,21 @@ nav ul {
   animation: pulse 3s forwards;
   animation-iteration-count: 3;
   opacity: 0;
-  padding: 0.5rem 1rem;
+}
+
+#board-button-restart {
+  background-color: #f8c600;
+  animation: pulse 2s infinite;
+  animation-iteration-count: 3;
+  opacity: 0;
+  width: fit-content;
+  position: absolute;
+  top: 0;
+  left: -35%;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: 1;
 }
 
 @keyframes pulse {
@@ -370,18 +386,13 @@ nav ul {
     opacity: 1;
   }
   50% {
-    transform: translateY(-5%) scaleY(0.9);
+    transform: translateY(-4%) scaleY(1);
     opacity: 0.95;
   }
   100% {
     transform: translateY(0) scaleY(1);
     opacity: 1;
   }
-}
-.appear {
-  opacity: 0;
-  transform: translateY(-100%);
-  transition: all 1s ease;
 }
 
 @keyframes rocketOut {
@@ -523,11 +534,18 @@ nav ul {
 .stat-item-container.selected {
   background: linear-gradient(90deg, #e4e0d0, #f8c600);
   border-radius: 2rem 0 0 2rem;
+  cursor: none;
 }
 
 .stat-item-container.disabled {
   pointer-events: none; /* disables hover/click */
   opacity: 0.6;
+}
+
+.stat-item-container.reset {
+  pointer-events: none; /* disables hover/click */
+  opacity: 0.6;
+  cursor: none;
 }
 
 .stat-name {

@@ -155,23 +155,61 @@ const cards = [
       topTrumpRating: 9,
     },
   },
-  {
-    name: "OTIS",
-    background: "imgs/sonicGame/OTIS.jpg",
-    stats: {
-      speed: 1090,
-      strength: 400,
-      danger: 20,
-      debut: 2019,
-      topTrumpRating: 10,
-    },
-  },
+  // {
+  //   name: "OTIS",
+  //   background: "imgs/sonicGame/OTIS.jpg",
+  //   stats: {
+  //     speed: 1000,
+  //     strength: 400,
+  //     danger: 20,
+  //     debut: 2019,
+  //     topTrumpRating: 10,
+  //   },
+  // },
+  // {
+  //   name: "Nonno",
+  //   background: "imgs/sonicGame/nonno.jpg",
+  //   stats: {
+  //     speed: 60,
+  //     strength: 8,
+  //     danger: 3,
+  //     debut: 1966,
+  //     topTrumpRating: 5,
+  //   },
+  // },
+
+  // {
+  //   name: "Crazy Pants",
+  //   background: "imgs/sonicGame/crazypants.jpg",
+  //   stats: {
+  //     speed: 1000,
+  //     strength: 20,
+  //     danger: 20,
+  //     debut: 1994,
+  //     topTrumpRating: 6,
+  //   },
+  // },
+
+  // {
+  //   name: "Santo",
+  //   background: "imgs/sonicGame/Santo.jpg",
+  //   stats: {
+  //     speed: 100,
+  //     strength: 12,
+  //     danger: 2,
+  //     debut: 1937,
+  //     topTrumpRating: 8,
+  //   },
+  // },
 ];
 
 // GLOBAL VARIABLES //
 
 let playerDeck = [];
 let computerDeck = [];
+lastRoundResult = "tie";
+let gameIsOver = false;
+// let maxScore = 14; // Removed duplicate declaration
 
 //FISHER-YATES SHUFFLE//
 function shuffleDeck(deck) {
@@ -184,224 +222,235 @@ function shuffleDeck(deck) {
   return shuffled;
 }
 
-//REMOVE START BUTTON AND PLAYER 1 COVER //
-document.getElementById("board-button-start").addEventListener("click", () => {
-  const cardCover = document.querySelector(".card-cover-1");
-  const startButton = document.getElementById("board-button-start");
-  if (cardCover) cardCover.classList.add("rocket-out");
-  if (startButton) startButton.style.display = "none";
-
-  // SHUFFLE AND DEAL //
+window.addEventListener("DOMContentLoaded", () => {
+  // Shuffle full card set
   const shuffledDeck = shuffleDeck(cards);
   const mid = Math.floor(shuffledDeck.length / 2);
-  // console.log(mid);
+
+  // Split into two decks
   playerDeck = shuffledDeck.slice(0, mid);
-  // console.log(playerDeck);
-
   computerDeck = shuffledDeck.slice(mid);
-  // console.log(computerDeck);
 
-  //RENDER CARDS//
-
-  function renderCard(card, selector) {
-    const cardElement = document.querySelector(selector);
-    if (!cardElement) {
-      console.warn("Card element not found for selector:", selector);
-      return;
-    }
-
-    const cardBody = cardElement.querySelector(".card-body");
-    if (cardBody) {
-      cardBody.style.background = `url(${card.background})`;
-      cardBody.style.backgroundSize = "cover";
-      cardBody.style.backgroundPosition = "center";
-    } else {
-      console.warn(`.card-body not found inside ${selector}`);
-    }
-
-    cardElement.querySelector(".card-name").textContent = card.name;
-    cardElement.querySelector(
-      ".speed-value"
-    ).textContent = `${card.stats.speed}`;
-    cardElement.querySelector(
-      ".strength-value"
-    ).textContent = `${card.stats.strength}`;
-    cardElement.querySelector(
-      ".danger-value"
-    ).textContent = `${card.stats.danger}`;
-    cardElement.querySelector(
-      ".debut-value"
-    ).textContent = `${card.stats.debut}`;
-    cardElement.querySelector(
-      ".top-trumps-rating-value"
-    ).textContent = `${card.stats.topTrumpRating}`;
-  }
-
-  // SHOW FIRST CARDS //
+  // Render top card for both players
   renderCard(playerDeck[0], ".player-1-card");
   renderCard(computerDeck[0], ".player-2-card");
 
-  console.log(playerDeck);
-  console.log(computerDeck);
+  console.log("Player Deck:", [...playerDeck]);
+  console.log("Computer Deck:", [...computerDeck]);
 });
 
-//STATS ANIMATIONS //
+//REMOVE START BUTTON AND PLAYER 1 COVER //
+function renderCard(card, selector) {
+  const cardElement = document.querySelector(selector);
+  if (!cardElement) {
+    console.warn("Card element not found for selector:", selector);
+    return;
+  }
+
+  const cardBody = cardElement.querySelector(".card-body");
+  if (cardBody) {
+    cardBody.style.background = `url(${card.background})`;
+    cardBody.style.backgroundSize = "cover";
+    cardBody.style.backgroundPosition = "center";
+  } else {
+    console.warn(`.card-body not found inside ${selector}`);
+  }
+
+  cardElement.querySelector(".card-name").textContent = card.name;
+  cardElement.querySelector(".speed-value").textContent = `${card.stats.speed}`;
+  cardElement.querySelector(
+    ".strength-value"
+  ).textContent = `${card.stats.strength}`;
+  cardElement.querySelector(
+    ".danger-value"
+  ).textContent = `${card.stats.danger}`;
+  cardElement.querySelector(".debut-value").textContent = `${card.stats.debut}`;
+  cardElement.querySelector(
+    ".top-trumps-rating-value"
+  ).textContent = `${card.stats.topTrumpRating}`;
+}
+
+function startGame() {
+  const cardCover = document.querySelector(".card-cover-1");
+  const cardCover2 = document.querySelector(".card-cover-2");
+  const startButton = document.getElementById("board-button-start");
+
+  document
+    .getElementById("board-button-start")
+    .addEventListener("click", () => {
+      if (cardCover) cardCover.classList.add("rocket-out");
+      if (cardCover2) cardCover2.classList.remove("rocket-out");
+      if (startButton) startButton.style.display = "none";
+
+      console.log("Player Deck:", [...playerDeck]);
+      console.log("Computer Deck:", [...computerDeck]);
+    });
+}
+
+startGame();
 
 //CLICK AND HOLD HIGHLIGHTED CHOICE//
+const statItems = document.querySelectorAll(
+  `.player-1-card .stat-item-container`
+);
 
-const statItems = document.querySelectorAll(`.stat-item-container`);
-console.log("statItems found:", statItems.length);
+let statSelected = false;
 
-let statSelected = false; //TRACK IF THE STAT HAS BEEN SELECTED //
 statItems.forEach((item) => {
   item.addEventListener("click", () => {
-    if (statSelected) {
-      //IF ALREADY SELECTED, IGNORE CLICKS ON OTHER STATS//
-      return;
-    }
+    if (statSelected) return;
 
-    //MARK THE ITEM AS SELECTED/
+    const selectedStat = item.getAttribute("data-stat");
 
-    statItems.forEach((i) => {
-      if (i !== item) {
-        i.classList.add("disabled");
-      } else {
-        i.classList.add("selected");
-      }
+    markSelectedStat(item, statItems);
+    statSelected = true;
+
+    statItems.forEach((item) => {
+      item.style.pointerEvents = "none"; // disables clicking entirely
     });
 
-    statSelected = true;
-    //REMOVE PLAYER 2 COVER AFTER STAT SELECTION //
-    const cardCover2 = document.querySelector(".card-cover-2");
-    if (cardCover2) {
-      cardCover2.classList.add("rocket-out");
-    }
+    revealComputerCard();
+    highlightOpponentStat(selectedStat);
+    disableAndSelectOpponentStat(selectedStat);
 
-    // HIGHLIGHT THE SAME STAT //
-    const selectedStat = item.getAttribute("data-stat");
-    if (selectedStat) {
-      const matchingStat = document.querySelector(
-        `.player-2-card .stat-item-container[data-stat="${selectedStat}"]`
-      );
-      if (matchingStat) {
-        matchingStat.classList.add("highlighted");
-      } else {
-        console.log("No matching stat found for:", selectedStat);
-      }
-    }
-
-    // DISABLE OTHER STATS//
-    if (selectedStat) {
-      const matchingStat = document.querySelector(
-        `.player-2-card .stat-item-container[data-stat ="${selectedStat}"]`
-      );
-
-      if (matchingStat) {
-        console.log(matchingStat);
-        matchingStat.classList.remove("disabled");
-        matchingStat.classList.remove("highlighted");
-        matchingStat.classList.add("selected");
-      }
-    }
-
-    //COLOR INDICATOR WIN/LOSE/TIE
-
-    const statValuePlayer = playerDeck[0].stats[selectedStat];
-    const statValueComputer = computerDeck[0].stats[selectedStat];
-
-    const playerStatEl = document.querySelector(
-      `.player-1-card .stat-item-container[data-stat="${selectedStat}"]`
-    );
-    const computerStatEl = document.querySelector(
-      `.player-2-card .stat-item-container[data-stat="${selectedStat}"]`
-    );
-
-    // Handle 'debut' as a reverse stat (lower is better)
-    const isReverseStat = selectedStat === "debut";
-
-    let result;
-    if (statValuePlayer === statValueComputer) {
-      result = "tie";
-    } else if (
-      (!isReverseStat && statValuePlayer > statValueComputer) ||
-      (isReverseStat && statValuePlayer < statValueComputer)
-    ) {
-      result = "playerWin";
-    } else {
-      result = "computerWin";
-    }
-
-    if (result === "tie") {
-      playerStatEl.classList.add("tie");
-      computerStatEl.classList.add("tie");
-    } else if (result === "playerWin") {
-      playerStatEl.classList.add("win");
-      computerStatEl.classList.add("lose");
-    } else if (result === "computerWin") {
-      playerStatEl.classList.add("lose");
-      computerStatEl.classList.add("win");
-    }
+    const result = determineRoundResult(selectedStat);
+    applyResultColors(selectedStat, result);
+    countdown();
+    evaluateRound(result);
     scoreIncrease(result);
     console.log(result);
   });
 });
 
-// SCORE CHANGES //
+function markSelectedStat(selectedItem, allItems) {
+  allItems.forEach((item) => {
+    if (item !== selectedItem) {
+      item.classList.add("disabled");
+    } else {
+      item.classList.add("selected");
+    }
+  });
+}
+
+function resetSelection(selectedItem, allItems) {
+  allItems.forEach((item) => {
+    if (item !== selectedItem) {
+      item.classList.add("reset");
+    }
+  });
+}
+
+function revealComputerCard() {
+  const cardCover2 = document.querySelector(".card-cover-2");
+  if (cardCover2) {
+    cardCover2.classList.add("rocket-out");
+  }
+}
+
+function highlightOpponentStat(stat) {
+  const matchingStat = document.querySelector(
+    `.player-2-card .stat-item-container[data-stat="${stat}"]`
+  );
+  if (matchingStat) {
+    matchingStat.classList.add("highlighted");
+  } else {
+    console.log("No matching stat found for:", stat);
+  }
+}
+
+function disableAndSelectOpponentStat(stat) {
+  const opponentStats = document.querySelectorAll(
+    `.player-2-card .stat-item-container`
+  );
+  opponentStats.forEach((item) => {
+    if (item.getAttribute("data-stat") === stat) {
+      item.classList.remove("disabled", "highlighted");
+      item.classList.add("selected");
+      // Enable pointer events just in case
+      item.style.pointerEvents = "none";
+    } else {
+      item.classList.add("disabled");
+      item.classList.remove("selected", "highlighted");
+      // Disable pointer events
+      item.style.pointerEvents = "none";
+    }
+  });
+}
+function determineRoundResult(selectedStat) {
+  const playerCard = playerDeck[0];
+  const computerCard = computerDeck[0];
+
+  console.log("Selected stat:", selectedStat);
+  console.log("Player card:", playerCard);
+  console.log("Computer card:", computerCard);
+
+  const statValuePlayer = Number(playerCard.stats[selectedStat]);
+  const statValueComputer = Number(computerCard.stats[selectedStat]);
+
+  console.log("Player stat:", statValuePlayer, typeof statValuePlayer);
+  console.log("Computer stat:", statValueComputer, typeof statValueComputer);
+
+  const isReverseStat = selectedStat === "debut";
+
+  if (statValuePlayer === statValueComputer) {
+    return "tie";
+  } else if (
+    (!isReverseStat && statValuePlayer > statValueComputer) ||
+    (isReverseStat && statValuePlayer < statValueComputer)
+  ) {
+    return "playerWin";
+  } else {
+    return "computerWin";
+  }
+}
+
+function applyResultColors(stat, result) {
+  const playerStatEl = document.querySelector(
+    `.player-1-card .stat-item-container[data-stat="${stat}"]`
+  );
+  const computerStatEl = document.querySelector(
+    `.player-2-card .stat-item-container[data-stat="${stat}"]`
+  );
+
+  if (result === "tie") {
+    playerStatEl.classList.add("tie");
+    computerStatEl.classList.add("tie");
+  } else if (result === "playerWin") {
+    playerStatEl.classList.add("win");
+    computerStatEl.classList.add("lose");
+  } else if (result === "computerWin") {
+    playerStatEl.classList.add("lose");
+    computerStatEl.classList.add("win");
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////////SCORE CHANGES ////////////////////////////////////////////////////////////////////////////////////
 
 const totalRings = 14;
 const maxScore = 7; // each player starts with 7 rings
 
 function updateScoreRings(player1Score, player2Score) {
   const rings = document.querySelectorAll(".health-bar .ring-icon");
+  const totalRings = rings.length;
 
   rings.forEach((ring, index) => {
     ring.classList.remove("player-increase", "cpu-increase");
 
     // Player 1 highlights from left side (start)
-    if (index === player1Score - 1) {
+    if (index < player1Score) {
       ring.classList.add("player1-increase");
     }
 
     // Player 2 highlights from right side (end)
-    if (index === totalRings - player2Score) {
+    if (index >= totalRings - player2Score) {
       ring.classList.add("cpu-increase");
     }
   });
 }
 
-function updatePlayer1Result(player1Score, player2Score) {
-  const player1Msg = document.getElementById("player-1-result-output");
-  if (!player1Msg) return;
+function scoreIncrease(lastRoundResult) {
+  if (gameIsOver) return;
 
-  if (player1Score > player2Score) {
-    player1Msg.textContent = "YOU WIN";
-    player1Msg.style.color = "#4caf50";
-  } else if (player1Score < player2Score) {
-    player1Msg.textContent = "YOU LOSE";
-    player1Msg.style.color = "#ff1100";
-  } else {
-    player1Msg.textContent = "DRAW";
-    player1Msg.style.color = "#f1b158";
-  }
-}
-
-function updateCPUResult(player1Score, player2Score) {
-  const cpuMsg = document.getElementById("cpu-result-output");
-  if (!cpuMsg) return;
-
-  if (player2Score > player1Score) {
-    cpuMsg.textContent = "YOU WIN";
-    cpuMsg.style.color = "#4caf50";
-  } else if (player2Score < player1Score) {
-    cpuMsg.textContent = "YOU LOSE";
-    cpuMsg.style.color = "#ff1100";
-  } else {
-    cpuMsg.textContent = "DRAW";
-    cpuMsg.style.color = "#f1b158";
-  }
-}
-
-function scoreIncrease(result) {
   const player1ScoreEl = document.querySelector(
     ".scoreboard-player-1 .player-score"
   );
@@ -420,48 +469,189 @@ function scoreIncrease(result) {
   if (isNaN(player1Score)) player1Score = maxScore;
   if (isNaN(player2Score)) player2Score = maxScore;
 
-  if (result === "playerWin") {
+  if (lastRoundResult === "playerWin") {
     player1Score++;
     player2Score--;
-  } else if (result === "computerWin") {
+  } else if (lastRoundResult === "computerWin") {
     player1Score--;
     player2Score++;
   }
 
+  //  // Clamp scores
+  //   player1Score = Math.max(0, Math.min(totalRings, player1Score));
+  //   player2Score = Math.max(0, Math.min(totalRings, player2Score));
+
   player1ScoreEl.textContent = player1Score;
   player2ScoreEl.textContent = player2Score;
 
+  player1Score = Math.max(0, Math.min(14, player1Score));
+  player2Score = Math.max(0, Math.min(14, player2Score));
+
   updateScoreRings(player1Score, player2Score);
-  updatePlayer1Result(player1Score, player2Score);
-  updateCPUResult(player1Score, player2Score);
+  updateResult(lastRoundResult);
+  gameWinner(player1Score, player2Score);
 
   // }
 }
+function updateResult(lastRoundResult) {
+  const cpuMsg = document.getElementById("cpu-result-output");
+  const player1Msg = document.getElementById("player-1-result-output");
+  if (!cpuMsg) return;
+  if (!player1Msg) return;
 
-// WHAT IS THE WINNING CARD?//
-let winningPlayer;
-
-if (player1Score > player2Score) {
-  winningPlayer = player1;
-} else if (player2Score > player1Score) {
-  winningPlayer = cpu; // Assuming 'cpu' is your other player variable
-} else {
-  winningPlayer = null; // It's a tie or no winner
-}
-
-let winningCard;
-
-if (player - 1 - card)
-  // WINNING CARD GIVEN TO PLAYER OR CPU DECK - ADDED TO THE DECK
-
-  function giveWinningCardToPlayer(winningCard, winningPlayer) {
-    if (!winningPlayer.hand) {
-      winningPlayer.hand = [];
-    }
-    winningPlayer.hand.push(winningCard);
+  if (lastRoundResult === "playerWin") {
+    player1Msg.style.textContent = "YOU WIN";
+    player1Msg.style.color = "#4caf50";
+    cpuMsg.textContent = "YOU LOSE";
+    cpuMsg.style.color = "#ff1100";
+  } else if (lastRoundResult === "computerWin") {
+    cpuMsg.textContent = "YOU WIN";
+    cpuMsg.style.color = "#4caf50";
+    player1Msg.textContent = "YOU LOSE";
+    player1Msg.style.color = "#ff1100";
+  } else if (lastRoundResult === "tie") {
+    cpuMsg.textContent = "DRAW";
+    cpuMsg.style.color = "#f1b158";
+    player1Msg.textContent = "DRAW";
+    player1.style.color = "#f1b158";
   }
 
-// Proceed to next round and nextRound functions should be defined at top-level, not nested.
-// Remove duplicate or misplaced function definitions here.
+  console.log(lastRoundResult);
+}
 
-// If you want to expose nextRound and proceedToNextRound globally, define them outside this block.
+function countdown() {
+  const nextRoundButton = document.getElementById("board-button-countdown");
+
+  if (nextRoundButton) {
+    nextRoundButton.style.opacity = "1";
+    nextRoundButton.style.transition = "opacity 1s ease";
+    nextRoundButton.innerText = "3";
+
+    setTimeout(() => (nextRoundButton.innerText = "2"), 500);
+    setTimeout(() => (nextRoundButton.innerText = "1"), 1500);
+    statSelected = false;
+    setTimeout(() => (nextRoundButton.innerText = "GO!"), 2500);
+
+    setTimeout(() => {
+      nextRoundButton.innerText = ""; // Hide content, not the element
+      nextRoundButton.style.opacity = "0"; // Just fade it out
+      proceedToNextRound();
+    }, 4000);
+  }
+}
+
+function evaluateRound(result) {
+  // Get the top cards (currently in play)
+  const playerCard = playerDeck.shift(); // Remove top card from player deck
+  const computerCard = computerDeck.shift(); // Remove top card from computer deck
+
+  if (result === "playerWin") {
+    // Player wins: add both cards to bottom of player deck
+    playerDeck.push(playerCard, computerCard);
+  } else if (result === "computerWin") {
+    // Computer wins: add both cards to bottom of computer deck
+    computerDeck.push(computerCard, playerCard);
+  } else {
+    // Tie: each player keeps their card at bottom
+    playerDeck.push(playerCard);
+    computerDeck.push(computerCard);
+  }
+
+  // Show the next card in each deck
+}
+
+function proceedToNextRound() {
+  if (gameIsOver) return;
+  console.log("proceedToNextRound called");
+  const cardCover2 = document.querySelector(".card-cover-2");
+  if (cardCover2) {
+    cardCover2.classList.remove("rocket-out");
+  }
+
+  // RESET CLASSES FOR STATS//
+  const statItems = document.querySelectorAll(".stat-item-container");
+  statItems.forEach((item) => {
+    item.classList.remove(
+      "win",
+      "lose",
+      "tie",
+      "disabled",
+      "selected",
+      "highlighted"
+    );
+    // Reset any selected or active states if needed //
+    item.style.pointerEvents = "auto"; // Re-enable interaction if disabled //
+  });
+
+  //CLEAR RESULT//
+  document.querySelectorAll(".result-message").forEach((el) => {
+    el.innerText = "";
+  });
+
+  renderCurrentCards();
+}
+
+function renderCurrentCards() {
+  if (gameIsOver) return;
+  if (playerDeck.length > 0 && computerDeck.length > 0) {
+    renderCard(playerDeck[0], ".player-1-card");
+    renderCard(computerDeck[0], ".player-2-card");
+  } else {
+    console.log("Game Over");
+  }
+}
+
+function gameWinner(player1Score, player2Score) {
+  const player1Msg = document.getElementById("player-1-result-output");
+  const cpuMsg = document.getElementById("cpu-result-output");
+
+  if (!player1Msg || !cpuMsg) {
+    console.warn("One or both message elements not found.");
+    return;
+  }
+
+  if (player1Score === 14) {
+    player1Msg.textContent = "Winner! :)";
+    cpuMsg.textContent = "Loser! :(";
+    endGame();
+  } else if (player2Score === 14) {
+    player1Msg.textContent = "Loser! :(";
+    cpuMsg.textContent = "Winner! :)";
+    endGame();
+  } else {
+    player1Msg.textContent = "";
+    cpuMsg.textContent = "";
+  }
+}
+
+function endGame() {
+  gameIsOver = true;
+  // Disable all player 1 stat items
+  const statItems = document.querySelectorAll(
+    ".player-1-card .stat-item-container"
+  );
+  statItems.forEach((item) => {
+    item.style.pointerEvents = "none";
+    item.classList.add("disabled");
+  });
+
+  const statItems2 = document.querySelectorAll(
+    ".player-2-card .stat-item-container"
+  );
+  statItems2.forEach((item) => {
+    item.style.pointerEvents = "none";
+    item.classList.add("disabled");
+  });
+  restartGame();
+  statSelected = true;
+}
+
+function restartGame() {
+  const restartButton = document.getElementById("board-button-restart");
+  restartButton.style.opacity = "1";
+  if (restartButton) {
+    restartButton.addEventListener("click", () => {
+      location.reload();
+    });
+  }
+}
